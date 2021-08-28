@@ -1,5 +1,3 @@
-/* cSpell:enable */
-
 import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './graphql/schema';
 
