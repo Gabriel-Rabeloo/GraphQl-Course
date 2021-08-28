@@ -1,25 +1,13 @@
-import { ApolloServer, gql } from 'apollo-server';
+/* cSpell:enable */
+
+import { ApolloServer } from 'apollo-server';
+import { typeDefs, resolvers } from './graphql/schema';
 
 const server = new ApolloServer({
-  typeDefs: gql`
-    type Query {
-      hello: String
-      hi: String
-    }
-  `,
-  resolvers: {
-    Query: {
-      hello: async () => {
-        return 'Hello again';
-      },
-      hi: () => {
-        return 'hi';
-      },
-    },
-  },
+  typeDefs,
+  resolvers,
 });
 
 server.listen(4003).then(({ url }) => {
   console.log(`Server listening on url ${url}`);
 });
-
