@@ -8,9 +8,3 @@ export const context = () => {
     getPosts: (path = '/') => axios(`${API_URL}/posts${path}`),
   };
 };
-
-async function nada() {
-  const a = await axios(`${API_URL}/users`)
-  console.log(a.data)
-}
-console.log(nada())
