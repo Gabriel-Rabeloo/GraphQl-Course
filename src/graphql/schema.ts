@@ -13,7 +13,7 @@ const rootTypeDefs = gql`
 
 const rootResolvers = {
   Query: {
-    _empty: () => true,
+    _empty: (): boolean => true,
   },
 };
 
