@@ -2,24 +2,10 @@ import { gql } from 'apollo-server-core';
 
 export const postTypeDefs = gql`
   extend type Query {
-    post(id: ID!): PostResult!
+    post(id: ID!): Post!
     posts(input: ApiFiltersInput): [Post!]!
   }
-  union PostResult = PostNotFoundError | PostTimeoutError | Post
-  interface PostError {
-    statusCode: Int!
-    message: String!
-  }
-  type PostNotFoundError implements PostError {
-    statusCode: Int!
-    message: String!
-    postId: String!
-  }
-  type PostTimeoutError implements PostError {
-    statusCode: Int!
-    message: String!
-    timeout: Int!
-  }
+
   type Post {
     id: ID!
     title: String!
@@ -27,6 +13,5 @@ export const postTypeDefs = gql`
     # user: User!
     indexRef: Int!
     createdAt: String!
-    unixTimestamp: String!
   }
 `;
