@@ -21,6 +21,12 @@ const posts = async (
   return posts.data;
 };
 
+const user = async ({ userId }: Post, _: any, { getUsers }: any) => {
+  const user = await getUsers('/' + userId);
+  return user.data;
+};
+
 export const postResolvers = {
   Query: { post, posts },
+  Post: { user },
 };

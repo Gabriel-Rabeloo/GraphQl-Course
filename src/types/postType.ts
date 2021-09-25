@@ -5,4 +5,5 @@ export type Post = {
   indexRef: string;
   createdAt: string;
   unixTimestamp: string;
+  userId: string;
 };
