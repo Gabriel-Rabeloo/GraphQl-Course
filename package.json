@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r sucrase/register src/index.ts",
+    "dev": "nodemon -r dotenv/config -r sucrase/register src/index.ts",
     "server": "json-server --watch db.json"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "apollo-server": "^3.1.2",
     "axios": "^0.21.4",
     "dataloader": "^2.0.0",
+    "dotenv": "^10.0.0",
     "graphql": "^15.5.1",
     "json-server": "^0.16.3",
     "node-fetch": "^2.6.1",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/dotenv": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "eslint": "^7.32.0",
