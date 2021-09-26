@@ -1,5 +1,5 @@
-import { params } from '../../types/paramsType';
-import { User } from '../../types/userType';
+import { params } from '../../types/simpleTypes';
+import { User } from '../../types/simpleTypes';
 
 const users = async (
   _: string,

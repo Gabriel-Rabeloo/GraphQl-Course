@@ -1,10 +1,10 @@
 import DataLoader from 'dataloader';
 import axios from 'axios';
 
-import { Error } from '../../types/errorType';
-import { params } from '../../types/paramsType';
-import { Post } from '../../types/postType';
-import { User } from '../../types/userType';
+import { Error } from '../../types/simpleTypes';
+import { params } from '../../types/simpleTypes';
+import { Post } from '../../types/simpleTypes';
+import { User } from '../../types/simpleTypes';
 
 const post = async (
   _: string,
