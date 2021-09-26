@@ -1,6 +1,10 @@
+import DataLoader from 'dataloader';
+import axios from 'axios';
+
 import { Error } from '../../types/errorType';
 import { params } from '../../types/paramsType';
 import { Post } from '../../types/postType';
+import { User } from '../../types/userType';
 
 const post = async (
   _: string,
@@ -21,9 +25,16 @@ const posts = async (
   return posts.data;
 };
 
-const user = async ({ userId }: Post, _: any, { getUsers }: any) => {
-  const user = await getUsers('/' + userId);
-  return user.data;
+const userDataLoader = new DataLoader(async (ids: any): Promise<string> => {
+  const urlQuery = ids.join('&id=');
+  const url = 'http://localhost:3000/users/?id=' + urlQuery;
+  const response = await axios(url);
+  const users: [User] = response.data;
+  return ids.map((id: string) => users.find((user) => user.id === id));
+});
+
+const user = async ({ userId }: Post) => {
+  return userDataLoader.load(userId);
 };
 
 export const postResolvers = {
