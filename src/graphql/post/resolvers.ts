@@ -20,8 +20,12 @@ const posts = async (
   return posts;
 };
 
-const user = async ({ userId }: Post, _: any, { userDataLoader }: any) => {
-  return userDataLoader.load(userId);
+const user = async (
+  { userId }: Post,
+  _: undefined,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.userApi.batchLoadByUserId(userId);
 };
 
 export const postResolvers = {

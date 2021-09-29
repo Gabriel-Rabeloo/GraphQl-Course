@@ -41,5 +41,13 @@ export type DataSources = {
         load: Function;
       };
     };
+    userApi: {
+      getUser: Function;
+      getUsers: Function;
+      batchLoadByUserId: Function;
+      dataLoader: {
+        load: Function;
+      };
+    };
   };
 };

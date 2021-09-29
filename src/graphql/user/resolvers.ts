@@ -4,20 +4,19 @@ import { User } from '../../types/simpleTypes';
 const users = async (
   _: undefined,
   { input }: params,
-  { getUsers }: any,
+  { dataSources }: DataSources,
 ): Promise<[User]> => {
-  const apiFiltersInput = new URLSearchParams(input);
-  const users = await getUsers('/?' + apiFiltersInput);
-  return users.data;
+  const users = await dataSources.userApi.getUsers(input);
+  return users;
 };
 
 const user = async (
   _: undefined,
   { id }: params,
-  { getUsers }: any,
+  { dataSources }: DataSources,
 ): Promise<User> => {
-  const user = await getUsers('/' + id);
-  return user.data;
+  const user = await dataSources.userApi.getUser(id);
+  return user;
 };
 
 const posts = ({ id }: User, _: undefined, { dataSources }: DataSources) => {
