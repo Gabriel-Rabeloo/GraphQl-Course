@@ -1,8 +1,8 @@
-import { params } from '../../types/simpleTypes';
+import { DataSources, params } from '../../types/simpleTypes';
 import { User } from '../../types/simpleTypes';
 
 const users = async (
-  _: string,
+  _: undefined,
   { input }: params,
   { getUsers }: any,
 ): Promise<[User]> => {
@@ -12,7 +12,7 @@ const users = async (
 };
 
 const user = async (
-  _: string,
+  _: undefined,
   { id }: params,
   { getUsers }: any,
 ): Promise<User> => {
@@ -20,8 +20,8 @@ const user = async (
   return user.data;
 };
 
-const posts = ({ id }: User, _: any, { postDataLoader }: any) => {
-  return postDataLoader.load(id);
+const posts = ({ id }: User, _: undefined, { dataSources }: DataSources) => {
+  return dataSources.postApi.batchLoadByUserId(id);
 };
 
 export const userResolvers = {

@@ -36,6 +36,10 @@ export type DataSources = {
     postApi: {
       getPost: Function;
       getPosts: Function;
+      batchLoadByUserId: Function;
+      dataLoader: {
+        load: Function;
+      };
     };
   };
 };
