@@ -2,12 +2,12 @@
 ### This repository contains everything developed in this [course](https://www.udemy.com/course/curso-de-graphql-e-apollo-server-client//).
 
 To run this project:
-  
-* Create an .env file with the same information as env.example
 
+* Clone the repository:
+    `git clone https://github.com/Gabriel-Rabeloo/GraphQl-Course.git`
+* Create an .env file with the same information as env.example
 * Use the commands below:
 
-    `git clone https://github.com/Gabriel-Rabeloo/GraphQl-Course.git` -> Cloning the repository
 
     `npm install` -> Instaling all dependencies
    
