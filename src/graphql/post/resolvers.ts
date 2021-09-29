@@ -1,24 +1,23 @@
-import { Error } from '../../types/simpleTypes';
+import { DataSources, Error } from '../../types/simpleTypes';
 import { params } from '../../types/simpleTypes';
 import { Post } from '../../types/simpleTypes';
 
 const post = async (
   _: string,
   { id }: params,
-  { getPosts }: any,
+  { dataSources }: DataSources,
 ): Promise<Post | Error> => {
-  const post = await getPosts('/' + id);
-  return post.data;
+  const post = dataSources.postApi.getPost(id);
+  return post;
 };
 
 const posts = async (
   _: string,
   { input }: params,
-  { getPosts }: any,
+  { dataSources }: any,
 ): Promise<[Post]> => {
-  const apiFiltersInput = new URLSearchParams(input);
-  const posts = await getPosts('/?' + apiFiltersInput);
-  return posts.data;
+  const posts = dataSources.postApi.getPosts(input);
+  return posts;
 };
 
 const user = async ({ userId }: Post, _: any, { userDataLoader }: any) => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export type User = {
   id: string;
   userName: string;
@@ -28,4 +29,13 @@ export type Error = {
   postId?: string;
   userId?: string;
   timeout?: number;
+};
+
+export type DataSources = {
+  dataSources: {
+    postApi: {
+      getPost: Function;
+      getPosts: Function;
+    };
+  };
 };

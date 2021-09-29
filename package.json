@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Gabriel-Rabeloo/GraphQl-introduction#readme",
   "dependencies": {
+    "apollo-datasource-rest": "^3.2.0",
     "apollo-server": "^3.1.2",
     "axios": "^0.21.4",
     "dataloader": "^2.0.0",
