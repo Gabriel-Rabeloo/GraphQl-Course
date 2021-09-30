@@ -2,6 +2,7 @@ import { DataSources, Error } from '../../types/simpleTypes';
 import { params } from '../../types/simpleTypes';
 import { Post } from '../../types/simpleTypes';
 
+// Query resolvers
 const post = async (
   _: string,
   { id }: params,
@@ -14,12 +15,21 @@ const post = async (
 const posts = async (
   _: string,
   { input }: params,
-  { dataSources }: any,
+  { dataSources }: DataSources,
 ): Promise<[Post]> => {
   const posts = dataSources.postApi.getPosts(input);
   return posts;
 };
+// Mutation resolvers
+const createPost = async (
+  _: undefined,
+  { data }: any,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.postApi.createPost(data);
+};
 
+// Field resolvers
 const user = async (
   { userId }: Post,
   _: undefined,
@@ -30,5 +40,6 @@ const user = async (
 
 export const postResolvers = {
   Query: { post, posts },
+  Mutation: { createPost },
   Post: { user },
 };

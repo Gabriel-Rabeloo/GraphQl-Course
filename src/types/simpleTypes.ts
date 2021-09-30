@@ -32,22 +32,36 @@ export type Error = {
 };
 
 export type DataSources = {
+  get: Function;
   dataSources: {
-    postApi: {
-      getPost: Function;
-      getPosts: Function;
-      batchLoadByUserId: Function;
-      dataLoader: {
-        load: Function;
-      };
-    };
-    userApi: {
-      getUser: Function;
-      getUsers: Function;
-      batchLoadByUserId: Function;
-      dataLoader: {
-        load: Function;
-      };
-    };
+    postApi: PostApi;
+    userApi: UserApi;
   };
+};
+
+interface PostApi {
+  get: Function;
+  getPost: Function;
+  getPosts: Function;
+  batchLoadByUserId: Function;
+  createPost: Function;
+  dataLoader: {
+    load: Function;
+  };
+}
+
+interface UserApi {
+  get: Function;
+  getUser: Function;
+  getUsers: Function;
+  batchLoadByUserId: Function;
+  dataLoader: {
+    load: Function;
+  };
+}
+
+export type InputPost = {
+  title: string;
+  body: string;
+  userId: string;
 };
