@@ -43,6 +43,7 @@ interface PostApi {
   get: Function;
   getPost: Function;
   getPosts: Function;
+  updatePost: Function;
   batchLoadByUserId: Function;
   createPost: Function;
   dataLoader: {
