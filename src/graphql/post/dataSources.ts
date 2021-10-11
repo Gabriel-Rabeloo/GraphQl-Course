@@ -2,7 +2,11 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
 import { InputPost } from '../../types/simpleTypes';
 import { makePostDataLoader } from './dataLoaders';
-import { createPostFn, updatePostFn } from './utils/post-repository';
+import {
+  createPostFn,
+  deletePostFn,
+  updatePostFn,
+} from './utils/post-repository';
 
 export class PostsApi extends RESTDataSource {
   dataLoader: any;
@@ -30,6 +34,10 @@ export class PostsApi extends RESTDataSource {
 
   async updatePost(postId: string, postData: InputPost) {
     return updatePostFn(postId, postData, this);
+  }
+
+  async deletePost(postId: string) {
+    return deletePostFn(postId, this);
   }
 
   batchLoadByUserId(id: string) {

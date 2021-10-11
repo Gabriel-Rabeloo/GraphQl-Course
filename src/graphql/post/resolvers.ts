@@ -37,6 +37,14 @@ const updatePost = async (
   return dataSources.postApi.updatePost(postId, data);
 };
 
+const deletePost = async (
+  _: undefined,
+  { id }: Post,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.postApi.deletePost(id);
+};
+
 // Field resolvers
 const user = async (
   { userId }: Post,
@@ -48,6 +56,6 @@ const user = async (
 
 export const postResolvers = {
   Query: { post, posts },
-  Mutation: { createPost, updatePost },
+  Mutation: { createPost, updatePost, deletePost },
   Post: { user },
 };
