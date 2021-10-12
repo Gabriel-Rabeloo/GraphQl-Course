@@ -19,11 +19,38 @@ const user = async (
   return user;
 };
 
+//Mutation Resolvers
+const createUser = async (
+  _: undefined,
+  { data }: any,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.userApi.createUser(data);
+};
+
+const updateUser = async (
+  _: undefined,
+  { data, userId }: any,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.userApi.updateUser(userId, data);
+};
+
+const deleteUser = async (
+  _: undefined,
+  { userId }: any,
+  { dataSources }: DataSources,
+) => {
+  return dataSources.userApi.deleteUser(userId);
+};
+
+// Field Resolvers
 const posts = ({ id }: User, _: undefined, { dataSources }: DataSources) => {
   return dataSources.postApi.batchLoadByUserId(id);
 };
 
 export const userResolvers = {
   Query: { user, users },
+  Mutation: { createUser, updateUser, deleteUser },
   User: { posts },
 };

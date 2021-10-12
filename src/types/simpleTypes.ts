@@ -33,6 +33,8 @@ export type Error = {
 
 export type DataSources = {
   get: Function;
+  patch: Function;
+  delete: Function;
   dataSources: {
     postApi: PostApi;
     userApi: UserApi;
@@ -56,7 +58,10 @@ interface UserApi {
   get: Function;
   getUser: Function;
   getUsers: Function;
+  updateUser: Function;
+  deleteUser: Function;
   batchLoadByUserId: Function;
+  createUser: Function;
   dataLoader: {
     load: Function;
   };
@@ -66,4 +71,10 @@ export type InputPost = {
   title: string;
   body: string;
   userId: string;
+};
+
+export type InputUser = {
+  fistName: string;
+  lastName: string;
+  userName: string;
 };
