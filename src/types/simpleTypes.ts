@@ -5,6 +5,7 @@ export type User = {
   firstName: string;
   lastName: string;
   indexRef: number;
+  passwordHash: string;
   createdAt: string;
 };
 
@@ -35,9 +36,11 @@ export type DataSources = {
   get: Function;
   patch: Function;
   delete: Function;
+
   dataSources: {
     postApi: PostApi;
     userApi: UserApi;
+    loginApi: LoginApi;
   };
 };
 
@@ -67,6 +70,10 @@ interface UserApi {
   };
 }
 
+interface LoginApi {
+  login: Function;
+}
+
 export type InputPost = {
   title: string;
   body: string;
@@ -77,4 +84,11 @@ export type InputUser = {
   fistName: string;
   lastName: string;
   userName: string;
+};
+
+export type InputLogin = {
+  data: {
+    userName: string;
+    password: string;
+  };
 };
