@@ -159,6 +159,15 @@
       "userName": "marcia_carvalho81",
       "indexRef": 1,
       "createdAt": "2016-12-08T00:49:39.870Z"
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Rabelo",
+      "userName": "gabriel-rabelo",
+      "passwordHash": "$2b$12$GlTaWG20EtQwRPlLELX0T.QZrhMEB86oieysLBiYSx8STDbjMd05O",
+      "indexRef": 22,
+      "createdAt": "2021-10-13T19:32:21.321Z",
+      "id": "yuxc4vr"
     }
   ],
   "posts": [
