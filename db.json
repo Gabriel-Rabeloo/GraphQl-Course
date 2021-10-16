@@ -168,6 +168,15 @@
       "indexRef": 22,
       "createdAt": "2021-10-13T19:32:21.321Z",
       "id": "yuxc4vr"
+    },
+    {
+      "firstName": "mudei",
+      "lastName": "O.",
+      "userName": "joana",
+      "passwordHash": "$2b$12$Z6vDVg4/dRI94wCODBYGKeb/Nt8gl7QaTSkpibBBqvBSfXMAjf43G",
+      "indexRef": 23,
+      "createdAt": "2021-10-16T22:48:38.542Z",
+      "id": "anjshzn"
     }
   ],
   "posts": [

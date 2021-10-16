@@ -5,7 +5,7 @@ const authorizeUser = (req: Request) => {
   const { authorization } = headers;
 
   try {
-    const [_bearer, token] = authorization.split(' ');
+    const token = authorization.split(' ')[1];
     const response = jwt.verify(token, process.env.JWT_SECRET || '');
     if (typeof response !== 'string') {
       const { userId } = response;

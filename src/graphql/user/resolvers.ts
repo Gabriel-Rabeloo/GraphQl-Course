@@ -1,5 +1,6 @@
-import { DataSources, params } from '../../types/simpleTypes';
+import { Context, DataSources, params } from '../../types/simpleTypes';
 import { User } from '../../types/simpleTypes';
+import { loginValidate } from '../login/utils/validate';
 
 const users = async (
   _: undefined,
@@ -31,16 +32,18 @@ const createUser = async (
 const updateUser = async (
   _: undefined,
   { data, userId }: any,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ) => {
+  loginValidate(userId, loggedUserId);
   return dataSources.userApi.updateUser(userId, data);
 };
 
 const deleteUser = async (
   _: undefined,
   { userId }: any,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ) => {
+  loginValidate(userId, loggedUserId);
   return dataSources.userApi.deleteUser(userId);
 };
 
