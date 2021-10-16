@@ -1,4 +1,5 @@
-import { DataSources, Error } from '../../types/simpleTypes';
+import { AuthenticationError } from 'apollo-server-errors';
+import { Context, DataSources, Error } from '../../types/simpleTypes';
 import { params } from '../../types/simpleTypes';
 import { Post } from '../../types/simpleTypes';
 
@@ -15,8 +16,11 @@ const post = async (
 const posts = async (
   _: string,
   { input }: params,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ): Promise<[Post]> => {
+  if (!loggedUserId) {
+    throw new AuthenticationError('You have to log in');
+  }
   const posts = dataSources.postApi.getPosts(input);
   return posts;
 };

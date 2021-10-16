@@ -44,6 +44,15 @@ export type DataSources = {
   };
 };
 
+export type Context = {
+  dataSources: {
+    postApi: PostApi;
+    userApi: UserApi;
+    loginApi: LoginApi;
+  };
+  loggedUserId: string;
+};
+
 interface PostApi {
   get: Function;
   getPost: Function;
