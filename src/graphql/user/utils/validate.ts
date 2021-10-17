@@ -1,5 +1,6 @@
 import { UserInputError, ValidationError } from 'apollo-server-errors';
 import bcrypt from 'bcrypt';
+import { DataSources } from '../../../types/simpleTypes';
 
 const validateUserName = (userName: string) => {
   const userNameRegExp = /^[a-z]([a-z0-9_.-]+)+$/gi;
@@ -51,4 +52,12 @@ export const checkUserFields = async (user: any, allFieldsRequired = false) => {
     user.passwordHash = passwordHash;
     delete user['password'];
   }
+};
+
+export const userExists = async (userName: string, dataSource: DataSources) => {
+  // /users/?userName=nomeBuscado
+  const found = await dataSource.get('', {
+    userName,
+  });
+  return found[0];
 };

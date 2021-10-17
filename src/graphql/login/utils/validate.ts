@@ -5,6 +5,6 @@ export const loginValidate = (userId = '', loggedUserId: string) => {
     throw new AuthenticationError('You have to log in to update your account');
   }
   if (userId !== '' && loggedUserId !== userId) {
-    throw new AuthenticationError('You cannot update this user');
+    throw new AuthenticationError('You cannot update or delete this user');
   }
 };

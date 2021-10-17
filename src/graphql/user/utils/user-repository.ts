@@ -1,6 +1,6 @@
 import { ValidationError } from 'apollo-server-errors';
-import { DataSources, InputUser } from '../../../types/simpleTypes';
-import { checkUserFields } from './validate';
+import { InputUser } from '../../../types/simpleTypes';
+import { checkUserFields, userExists } from './validate';
 
 export const createUserFn = async (userData: InputUser, dataSource: any) => {
   await checkUserFields(userData, true);
@@ -53,12 +53,4 @@ export const deleteUserFn = async (userId: string, dataSource: any) => {
   if (!userId) throw new ValidationError('Missing userId');
 
   return !!(await dataSource.delete(userId));
-};
-
-const userExists = async (userName: string, dataSource: DataSources) => {
-  // /users/?userName=nomeBuscado
-  const found = await dataSource.get('', {
-    userName,
-  });
-  return found[0];
 };
