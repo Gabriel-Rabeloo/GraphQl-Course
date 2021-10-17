@@ -5,7 +5,6 @@ import { User } from '../../types/simpleTypes';
 import jwt from 'jsonwebtoken';
 
 export class LoginApi extends RESTDataSource {
-  dataLoader: any;
   constructor() {
     super();
     this.baseURL = process.env.API_URL + '/users/';
@@ -38,6 +37,7 @@ export class LoginApi extends RESTDataSource {
     }
 
     const token = this.createJwtToken({ userId });
+    await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
     return { userId, token };
   }
@@ -45,6 +45,7 @@ export class LoginApi extends RESTDataSource {
   checkUserPassword(password: string, passwordHash: string) {
     return bcrypt.compare(password, passwordHash);
   }
+
   createJwtToken(payload: { userId: string }) {
     if (process.env.JWT_SECRET) {
       return jwt.sign(payload, process.env.JWT_SECRET, {

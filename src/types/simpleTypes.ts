@@ -7,6 +7,7 @@ export type User = {
   indexRef: number;
   passwordHash: string;
   createdAt: string;
+  token: string;
 };
 
 export type Post = {

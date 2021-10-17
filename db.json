@@ -176,7 +176,8 @@
       "passwordHash": "$2b$12$Z6vDVg4/dRI94wCODBYGKeb/Nt8gl7QaTSkpibBBqvBSfXMAjf43G",
       "indexRef": 23,
       "createdAt": "2021-10-16T22:48:38.542Z",
-      "id": "anjshzn"
+      "id": "anjshzn",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhbmpzaHpuIiwiaWF0IjoxNjM0NTAyMTg2LCJleHAiOjE2MzUxMDY5ODZ9.sZ0UCz8M4ZDb5CqDa5JcOF-xDmNrliNg0dD51j9i8dk"
     }
   ],
   "posts": [

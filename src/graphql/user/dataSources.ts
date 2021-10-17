@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
-import { InputUser } from '../../types/simpleTypes';
+import { InputUser, User } from '../../types/simpleTypes';
 import { makeUserDataLoader } from './dataLoaders';
 import {
   createUserFn,
@@ -22,7 +22,7 @@ export class UsersApi extends RESTDataSource {
     });
   }
 
-  async getUser(id: string) {
+  async getUser(id: string): Promise<User> {
     return this.get(id, undefined, {
       cacheOptions: { ttl: 60 },
     });
