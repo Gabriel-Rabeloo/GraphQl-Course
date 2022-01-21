@@ -167,17 +167,18 @@
       "passwordHash": "$2b$12$GlTaWG20EtQwRPlLELX0T.QZrhMEB86oieysLBiYSx8STDbjMd05O",
       "indexRef": 22,
       "createdAt": "2021-10-13T19:32:21.321Z",
-      "id": "yuxc4vr"
+      "id": "yuxc4vr",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ5dXhjNHZyIiwiaWF0IjoxNjQyNzkwMDk4LCJleHAiOjE2NDMzOTQ4OTh9.Kc43DCX9Q4vsz3zUaaDEUhWpTD9gSSleq-JUN5jCyCg"
     },
     {
-      "firstName": "mudei",
+      "firstName": "Joana",
       "lastName": "O.",
       "userName": "joana",
-      "passwordHash": "$2b$12$Z6vDVg4/dRI94wCODBYGKeb/Nt8gl7QaTSkpibBBqvBSfXMAjf43G",
+      "passwordHash": "$2b$12$xrnHzg9zcOb8THJKI14WouO67qToxnHlXFaXSUyRv6cBtM7gth6yy",
       "indexRef": 23,
-      "createdAt": "2021-10-16T22:48:38.542Z",
-      "id": "anjshzn",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhbmpzaHpuIiwiaWF0IjoxNjM0NTAyMTg2LCJleHAiOjE2MzUxMDY5ODZ9.sZ0UCz8M4ZDb5CqDa5JcOF-xDmNrliNg0dD51j9i8dk"
+      "createdAt": "2021-10-17T21:10:24.002Z",
+      "id": "rrh19yp",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJycmgxOXlwIiwiaWF0IjoxNjM0NTA1MDI4LCJleHAiOjE2MzUxMDk4Mjh9.zhrzoAfzxezRtB87rvulSZBsMFytF0ETdApGDoq-X4s"
     }
   ],
   "posts": [
@@ -372,6 +373,14 @@
       "userId": "502",
       "indexRef": 19,
       "createdAt": "2017-04-26T19:39:05.420Z"
+    },
+    {
+      "title": "Meu post logado!!!",
+      "body": "Now we have a login system",
+      "userId": "yuxc4vr",
+      "indexRef": 25,
+      "createdAt": "Fri Jan 21 2022 15:35:22 GMT-0300 (Horário Padrão de Brasília)",
+      "id": "h0JkErz"
     }
   ],
   "comments": [

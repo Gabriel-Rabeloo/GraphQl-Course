@@ -26,8 +26,10 @@ const posts = async (
 const createPost = async (
   _: undefined,
   { data }: any,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ) => {
+  loginValidate('', loggedUserId);
+  data.userId = loggedUserId;
   return dataSources.postApi.createPost(data);
 };
 
