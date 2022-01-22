@@ -1,6 +1,6 @@
 import { AuthenticationError, ValidationError } from 'apollo-server-errors';
 import { FetchError } from 'node-fetch';
-import { InputPost } from '../../../types/simpleTypes';
+import { InputPost, Post } from '../../../types/simpleTypes';
 import { userExist } from './validate';
 
 export const createPostFn = async (postData: InputPost, dataSource: any) => {
@@ -14,18 +14,10 @@ export const createPostFn = async (postData: InputPost, dataSource: any) => {
   return await dataSource.post('', { ...postInfo });
 };
 
-export const updatePostFn = async (
-  postId: string,
-  postData: InputPost,
-  dataSource: any,
-) => {
-  if (!postId) {
-    throw new ValidationError('Missing postId');
-  }
-
-  const foundPost = await dataSource.get(postId, undefined, {
+export const findPostOwner = async (postId: string, dataSource: any) => {
+  const foundPost = (await dataSource.get(postId, undefined, {
     cacheOptions: { ttl: 0 },
-  });
+  })) as Post | undefined;
 
   if (!foundPost) {
     throw new FetchError(
@@ -38,7 +30,19 @@ export const updatePostFn = async (
     throw new AuthenticationError('You cannot update this post 😠!');
   }
 
-  const { userId } = foundPost;
+  return foundPost;
+};
+
+export const updatePostFn = async (
+  postId: string,
+  postData: InputPost,
+  dataSource: any,
+) => {
+  if (!postId) {
+    throw new ValidationError('Missing postId');
+  }
+
+  const { userId } = await findPostOwner(postId, dataSource);
   const { title, body } = postData;
 
   if (typeof title !== 'undefined') {
@@ -65,6 +69,7 @@ export const updatePostFn = async (
 
 export const deletePostFn = async (postId: string, dataSource: any) => {
   if (!postId) throw new ValidationError('Missing postId');
+  await findPostOwner(postId, dataSource);
 
   const deleted = await dataSource.delete(postId);
   return !!deleted;
@@ -72,7 +77,6 @@ export const deletePostFn = async (postId: string, dataSource: any) => {
 
 const createPostInfo = async (postData: InputPost, dataSource: any) => {
   const { title, body, userId } = postData;
-
   await userExist(userId, dataSource);
 
   const indexRefPost = await dataSource.get('', {

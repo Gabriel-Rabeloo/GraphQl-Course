@@ -45,8 +45,9 @@ const updatePost = async (
 const deletePost = async (
   _: undefined,
   { id }: Post,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ) => {
+  checkIsLoggedIn(loggedUserId);
   return dataSources.postApi.deletePost(id);
 };
 
