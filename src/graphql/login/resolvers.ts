@@ -1,4 +1,4 @@
-import { DataSources, InputLogin } from '../../types/simpleTypes';
+import { Context, DataSources, InputLogin } from '../../types/simpleTypes';
 
 export const login = async (
   _: undefined,
@@ -9,8 +9,17 @@ export const login = async (
   return dataSources.loginApi.login(userName, password);
 };
 
+export const logout = async (
+  _: undefined,
+  { userName }: { userName: string },
+  { dataSources }: Context,
+) => {
+  return dataSources.loginApi.logout(userName);
+};
+
 export const loginResolvers = {
   Mutation: {
     login,
+    logout,
   },
 };

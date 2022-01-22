@@ -10,7 +10,7 @@ export class LoginApi extends RESTDataSource {
     this.baseURL = process.env.API_URL + '/users/';
   }
 
-  async login(userName: string, password: string) {
+  async getUser(userName: string): Promise<User[]> {
     const user: User[] = await this.get(
       '',
       { userName },
@@ -23,6 +23,17 @@ export class LoginApi extends RESTDataSource {
         'User does not exist or password is invalid',
       );
     }
+    return user;
+  }
+
+  async login(
+    userName: string,
+    password: string,
+  ): Promise<{
+    userId: string;
+    token: string;
+  }> {
+    const user = await this.getUser(userName);
 
     const { passwordHash, id: userId } = user[0];
     const isPasswordValid = await this.checkUserPassword(
@@ -36,10 +47,24 @@ export class LoginApi extends RESTDataSource {
       );
     }
 
-    const token = this.createJwtToken({ userId });
+    const token = this.createJwtToken({ userId }) as string;
     await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
     return { userId, token };
+  }
+
+  async logout(userName: string): Promise<boolean> {
+    const user = await this.getUser(userName);
+
+    const { id: userId } = user[0];
+
+    if (userId !== this.context.loggedUserId) {
+      console.log('userId', userId, 'his.context.loggedUserId', this);
+      throw new AuthenticationError('You are not this user.');
+    }
+
+    await this.patch(userId, { token: '' }, { cacheOptions: { ttl: 0 } });
+    return true;
   }
 
   checkUserPassword(password: string, passwordHash: string) {

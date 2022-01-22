@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-types */
 export type User = {
   id: string;
@@ -81,7 +82,11 @@ interface UserApi {
 }
 
 interface LoginApi {
-  login: Function;
+  login: (
+    userName: string,
+    password: string,
+  ) => Promise<{ userId: string; token: string }>;
+  logout: (userName: string) => Promise<boolean>;
 }
 
 export type InputPost = {
