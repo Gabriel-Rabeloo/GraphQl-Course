@@ -1,4 +1,5 @@
-import { ValidationError } from 'apollo-server-errors';
+import { AuthenticationError, ValidationError } from 'apollo-server-errors';
+import { FetchError } from 'node-fetch';
 import { InputPost } from '../../../types/simpleTypes';
 import { userExist } from './validate';
 
@@ -22,7 +23,23 @@ export const updatePostFn = async (
     throw new ValidationError('Missing postId');
   }
 
-  const { title, body, userId } = postData;
+  const foundPost = await dataSource.get(postId, undefined, {
+    cacheOptions: { ttl: 0 },
+  });
+
+  if (!foundPost) {
+    throw new FetchError(
+      'Could not find the post you are looking for.',
+      'Not Found',
+    );
+  }
+
+  if (foundPost.userId !== dataSource.context.loggedUserId) {
+    throw new AuthenticationError('You cannot update this post 😠!');
+  }
+
+  const { userId } = foundPost;
+  const { title, body } = postData;
 
   if (typeof title !== 'undefined') {
     if (!title) {
@@ -40,9 +57,8 @@ export const updatePostFn = async (
     if (!userId) {
       throw new ValidationError('Missing userId');
     }
+    await userExist(userId, dataSource);
   }
-
-  await userExist(userId, dataSource);
 
   return dataSource.patch(postId, { ...postData });
 };

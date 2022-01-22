@@ -36,8 +36,9 @@ const createPost = async (
 const updatePost = async (
   _: undefined,
   { postId, data }: any,
-  { dataSources }: DataSources,
+  { dataSources, loggedUserId }: Context,
 ) => {
+  checkIsLoggedIn(loggedUserId);
   return dataSources.postApi.updatePost(postId, data);
 };
 
