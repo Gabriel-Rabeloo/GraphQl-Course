@@ -1,10 +1,15 @@
 import { AuthenticationError } from 'apollo-server-errors';
 
-export const loginValidate = (userId = '', loggedUserId: string) => {
+export const checkIsLoggedIn = (loggedUserId: string) => {
   if (!loggedUserId) {
-    throw new AuthenticationError('You have to log in to do this action.');
+    throw new AuthenticationError('You have to log in');
   }
-  if (userId !== '' && loggedUserId !== userId) {
-    throw new AuthenticationError('You cannot update or delete this user');
+};
+
+export const checkOwner = (userId: string, loggedUserId: string) => {
+  checkIsLoggedIn(loggedUserId);
+
+  if (loggedUserId !== userId) {
+    throw new AuthenticationError('You cannot update this user.');
   }
 };

@@ -1,6 +1,6 @@
 import { Context, DataSources, params } from '../../types/simpleTypes';
 import { User } from '../../types/simpleTypes';
-import { loginValidate } from '../login/utils/validate';
+import { checkOwner } from '../login/utils/validate';
 
 const users = async (
   _: undefined,
@@ -34,7 +34,7 @@ const updateUser = async (
   { data, userId }: any,
   { dataSources, loggedUserId }: Context,
 ) => {
-  loginValidate(userId, loggedUserId);
+  checkOwner(userId, loggedUserId);
   return dataSources.userApi.updateUser(userId, data);
 };
 
@@ -43,7 +43,7 @@ const deleteUser = async (
   { userId }: any,
   { dataSources, loggedUserId }: Context,
 ) => {
-  loginValidate(userId, loggedUserId);
+  checkOwner(userId, loggedUserId);
   return dataSources.userApi.deleteUser(userId);
 };
 

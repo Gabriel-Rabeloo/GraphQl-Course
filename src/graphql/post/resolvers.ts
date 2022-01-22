@@ -1,7 +1,7 @@
 import { Context, DataSources, Error } from '../../types/simpleTypes';
 import { params } from '../../types/simpleTypes';
 import { Post } from '../../types/simpleTypes';
-import { loginValidate } from '../login/utils/validate';
+import { checkIsLoggedIn } from '../login/utils/validate';
 
 // Query resolvers
 const post = async (
@@ -18,7 +18,7 @@ const posts = async (
   { input }: params,
   { dataSources, loggedUserId }: Context,
 ): Promise<[Post]> => {
-  loginValidate('', loggedUserId);
+  checkIsLoggedIn(loggedUserId);
   const posts = dataSources.postApi.getPosts(input);
   return posts;
 };
@@ -28,7 +28,7 @@ const createPost = async (
   { data }: any,
   { dataSources, loggedUserId }: Context,
 ) => {
-  loginValidate('', loggedUserId);
+  checkIsLoggedIn(loggedUserId);
   data.userId = loggedUserId;
   return dataSources.postApi.createPost(data);
 };
