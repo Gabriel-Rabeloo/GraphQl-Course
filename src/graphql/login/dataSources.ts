@@ -59,7 +59,6 @@ export class LoginApi extends RESTDataSource {
     const { id: userId } = user[0];
 
     if (userId !== this.context.loggedUserId) {
-      console.log('userId', userId, 'his.context.loggedUserId', this);
       throw new AuthenticationError('You are not this user.');
     }
 
