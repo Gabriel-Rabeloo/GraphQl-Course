@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
-import { InputPost } from '../../types/simpleTypes';
+import { InputPost, Post } from '../../interfaces/simpleTypes';
 import { makePostDataLoader } from './dataLoaders';
 import { createPostFn, deletePostFn, updatePostFn } from './utils/post-repository';
 
@@ -12,13 +12,13 @@ export class PostsApi extends RESTDataSource {
     this.dataLoader = makePostDataLoader(this.getPosts.bind(this));
   }
 
-  async getPosts(urlParams: URLSearchParamsInit = {}) {
+  async getPosts(urlParams: URLSearchParamsInit = {}): Promise<Post[]> {
     return this.get('', urlParams, {
       cacheOptions: { ttl: 60 },
     });
   }
 
-  async getPost(id: string) {
+  async getPost(id: string): Promise<Post> {
     return this.get(id, undefined, {
       cacheOptions: { ttl: 60 },
     });
@@ -36,7 +36,7 @@ export class PostsApi extends RESTDataSource {
     return deletePostFn(postId, this);
   }
 
-  batchLoadByUserId(id: string) {
+  batchLoadByUserId(id: string): Promise<Post[]> {
     return this.dataLoader.load(id);
   }
 }

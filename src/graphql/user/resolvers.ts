@@ -1,8 +1,8 @@
-import { Context, DataSources, params } from '../../types/simpleTypes';
-import { User } from '../../types/simpleTypes';
+import { Context, DataSources, params } from '../../interfaces/simpleTypes';
+import { User } from '../../interfaces/simpleTypes';
 import { checkOwner } from '../login/utils/validate';
 
-const users = async (_: undefined, { input }: params, { dataSources }: DataSources): Promise<[User]> => {
+const users = async (_: undefined, { input }: params, { dataSources }: DataSources): Promise<User[]> => {
   const users = await dataSources.userApi.getUsers(input);
   return users;
 };

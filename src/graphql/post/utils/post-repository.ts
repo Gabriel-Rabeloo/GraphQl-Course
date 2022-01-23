@@ -1,9 +1,10 @@
 import { AuthenticationError, ValidationError } from 'apollo-server-errors';
 import { FetchError } from 'node-fetch';
-import { InputPost, Post } from '../../../types/simpleTypes';
+
+import { InputPost, Post } from '../../../interfaces/simpleTypes';
 import { userExist } from './validate';
 
-export const createPostFn = async (postData: InputPost, dataSource: any) => {
+export const createPostFn = async (postData: InputPost, dataSource: any): Promise<Post> => {
   const postInfo = await createPostInfo(postData, dataSource);
   const { title, body, userId } = postInfo;
 
@@ -14,7 +15,7 @@ export const createPostFn = async (postData: InputPost, dataSource: any) => {
   return await dataSource.post('', { ...postInfo });
 };
 
-export const findPostOwner = async (postId: string, dataSource: any) => {
+export const findPostOwner = async (postId: string, dataSource: any): Promise<Post> => {
   const foundPost = (await dataSource.get(postId, undefined, {
     cacheOptions: { ttl: 0 },
   })) as Post | undefined;
@@ -30,7 +31,7 @@ export const findPostOwner = async (postId: string, dataSource: any) => {
   return foundPost;
 };
 
-export const updatePostFn = async (postId: string, postData: InputPost, dataSource: any) => {
+export const updatePostFn = async (postId: string, postData: InputPost, dataSource: any): Promise<Post> => {
   if (!postId) {
     throw new ValidationError('Missing postId');
   }

@@ -1,4 +1,4 @@
-import { Context, DataSources, InputLogin } from '../../types/simpleTypes';
+import { Context, DataSources, InputLogin } from '../../interfaces/simpleTypes';
 
 export const login = async (_: undefined, { data }: InputLogin, { dataSources }: DataSources) => {
   const { userName, password } = data;

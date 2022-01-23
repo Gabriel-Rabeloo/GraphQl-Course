@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
-import { InputUser, User } from '../../types/simpleTypes';
+import { InputUser, User } from '../../interfaces/simpleTypes';
 import { makeUserDataLoader } from './dataLoaders';
 import { createUserFn, deleteUserFn, updateUserFn } from './utils/user-repository';
 
@@ -12,7 +12,7 @@ export class UsersApi extends RESTDataSource {
     this.dataLoader = makeUserDataLoader(this.getUsers.bind(this));
   }
 
-  async getUsers(urlParams: URLSearchParamsInit = {}) {
+  async getUsers(urlParams: URLSearchParamsInit = {}): Promise<User[]> {
     return this.get('', urlParams, {
       cacheOptions: { ttl: 60 },
     });
@@ -34,7 +34,7 @@ export class UsersApi extends RESTDataSource {
   async deleteUser(id: string) {
     return deleteUserFn(id, this);
   }
-  batchLoadByUserId(id: string) {
+  batchLoadByUserId(id: string): Promise<User> {
     return this.dataLoader.load(id);
   }
 }

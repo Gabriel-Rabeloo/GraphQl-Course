@@ -1,4 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { URLSearchParamsInit } from 'apollo-server-env';
+
+import { LoginApi } from '../graphql/login/dataSources';
+import { PostsApi } from '../graphql/post/dataSources';
+import { UsersApi } from '../graphql/user/dataSources';
+
 /* eslint-disable @typescript-eslint/ban-types */
 export type User = {
   id: string;
@@ -22,8 +28,8 @@ export type Post = {
 };
 
 export type params = {
-  input?: string;
-  id?: string;
+  input: string;
+  id: string;
 };
 
 export type Error = {
@@ -34,56 +40,25 @@ export type Error = {
   timeout?: number;
 };
 
-export type DataSources = {
-  get: Function;
-  patch: Function;
-  delete: Function;
+export interface DataSources {
+  get: (path: string, params?: URLSearchParamsInit | undefined, init?: RequestInit | undefined) => Promise<any>;
+  patch: (path: string, body?: Body | undefined, init?: RequestInit | undefined) => Promise<any>;
+  delete: (path: string, params?: URLSearchParamsInit | undefined, init?: RequestInit | undefined) => Promise<any>;
 
   dataSources: {
-    postApi: PostApi;
-    userApi: UserApi;
+    postApi: PostsApi;
+    userApi: UsersApi;
     loginApi: LoginApi;
   };
-};
+}
 
-export type Context = {
+export interface Context {
   dataSources: {
-    postApi: PostApi;
-    userApi: UserApi;
+    postApi: PostsApi;
+    userApi: UsersApi;
     loginApi: LoginApi;
   };
   loggedUserId: string;
-};
-
-interface PostApi {
-  get: Function;
-  getPost: Function;
-  getPosts: Function;
-  updatePost: Function;
-  deletePost: Function;
-  batchLoadByUserId: Function;
-  createPost: Function;
-  dataLoader: {
-    load: Function;
-  };
-}
-
-interface UserApi {
-  get: Function;
-  getUser: Function;
-  getUsers: Function;
-  updateUser: Function;
-  deleteUser: Function;
-  batchLoadByUserId: Function;
-  createUser: Function;
-  dataLoader: {
-    load: Function;
-  };
-}
-
-interface LoginApi {
-  login: (userName: string, password: string) => Promise<{ userId: string; token: string }>;
-  logout: (userName: string) => Promise<boolean>;
 }
 
 export type InputPost = {

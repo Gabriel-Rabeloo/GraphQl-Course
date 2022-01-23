@@ -1,8 +1,8 @@
 import { ValidationError } from 'apollo-server-errors';
-import { InputUser } from '../../../types/simpleTypes';
+import { InputUser, User } from '../../../interfaces/simpleTypes';
 import { checkUserFields, userExists } from './validate';
 
-export const createUserFn = async (userData: InputUser, dataSource: any) => {
+export const createUserFn = async (userData: InputUser, dataSource: any): Promise<User> => {
   await checkUserFields(userData, true);
 
   const indexRefUser = await dataSource.get('', {
@@ -10,7 +10,7 @@ export const createUserFn = async (userData: InputUser, dataSource: any) => {
     _sort: 'indexRef',
     _order: 'desc',
   });
-  const indexRef = indexRefUser[0].indexRef + 1;
+  const indexRef = (indexRefUser[0].indexRef + 1) as number;
 
   const foundUser = await userExists(userData.userName, dataSource);
 
@@ -25,7 +25,7 @@ export const createUserFn = async (userData: InputUser, dataSource: any) => {
   });
 };
 
-export const updateUserFn = async (userId: string, userData: InputUser, dataSource: any) => {
+export const updateUserFn = async (userId: string, userData: InputUser, dataSource: any): Promise<User> => {
   await checkUserFields(userData, false);
 
   if (!userId) throw new ValidationError('Missing userId');

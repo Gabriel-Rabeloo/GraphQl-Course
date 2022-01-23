@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 
-import { User } from '../../types/simpleTypes';
+import { User } from '../../interfaces/simpleTypes';
 
 export const makeUserDataLoader = (getUsers: any) => {
   return new DataLoader(async (ids: any): Promise<string> => {

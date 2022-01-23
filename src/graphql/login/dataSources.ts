@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { AuthenticationError } from 'apollo-server-errors';
-import { User } from '../../types/simpleTypes';
+import { User } from '../../interfaces/simpleTypes';
 import jwt from 'jsonwebtoken';
 
 export class LoginApi extends RESTDataSource {
