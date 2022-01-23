@@ -2,47 +2,27 @@ import { Context, DataSources, params } from '../../types/simpleTypes';
 import { User } from '../../types/simpleTypes';
 import { checkOwner } from '../login/utils/validate';
 
-const users = async (
-  _: undefined,
-  { input }: params,
-  { dataSources }: DataSources,
-): Promise<[User]> => {
+const users = async (_: undefined, { input }: params, { dataSources }: DataSources): Promise<[User]> => {
   const users = await dataSources.userApi.getUsers(input);
   return users;
 };
 
-const user = async (
-  _: undefined,
-  { id }: params,
-  { dataSources }: DataSources,
-): Promise<User> => {
+const user = async (_: undefined, { id }: params, { dataSources }: DataSources): Promise<User> => {
   const user = await dataSources.userApi.getUser(id);
   return user;
 };
 
 //Mutation Resolvers
-const createUser = async (
-  _: undefined,
-  { data }: any,
-  { dataSources }: DataSources,
-) => {
+const createUser = async (_: undefined, { data }: any, { dataSources }: DataSources) => {
   return dataSources.userApi.createUser(data);
 };
 
-const updateUser = async (
-  _: undefined,
-  { data, userId }: any,
-  { dataSources, loggedUserId }: Context,
-) => {
+const updateUser = async (_: undefined, { data, userId }: any, { dataSources, loggedUserId }: Context) => {
   checkOwner(userId, loggedUserId);
   return dataSources.userApi.updateUser(userId, data);
 };
 
-const deleteUser = async (
-  _: undefined,
-  { userId }: any,
-  { dataSources, loggedUserId }: Context,
-) => {
+const deleteUser = async (_: undefined, { userId }: any, { dataSources, loggedUserId }: Context) => {
   checkOwner(userId, loggedUserId);
   return dataSources.userApi.deleteUser(userId);
 };

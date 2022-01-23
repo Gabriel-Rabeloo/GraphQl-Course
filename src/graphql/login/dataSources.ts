@@ -11,40 +11,23 @@ export class LoginApi extends RESTDataSource {
   }
 
   async getUser(userName: string): Promise<User[]> {
-    const user: User[] = await this.get(
-      '',
-      { userName },
-      { cacheOptions: { ttl: 0 } },
-    );
+    const user: User[] = await this.get('', { userName }, { cacheOptions: { ttl: 0 } });
     const found = !!user.length;
 
     if (!found) {
-      throw new AuthenticationError(
-        'User does not exist or password is invalid',
-      );
+      throw new AuthenticationError('User does not exist or password is invalid');
     }
     return user;
   }
 
-  async login(
-    userName: string,
-    password: string,
-  ): Promise<{
-    userId: string;
-    token: string;
-  }> {
+  async login(userName: string, password: string): Promise<{ userId: string; token: string }> {
     const user = await this.getUser(userName);
 
     const { passwordHash, id: userId } = user[0];
-    const isPasswordValid = await this.checkUserPassword(
-      password,
-      passwordHash,
-    );
+    const isPasswordValid = await this.checkUserPassword(password, passwordHash);
 
     if (!isPasswordValid) {
-      throw new AuthenticationError(
-        'User does not exist or password is invalid',
-      );
+      throw new AuthenticationError('User does not exist or password is invalid');
     }
 
     const token = this.createJwtToken({ userId }) as string;

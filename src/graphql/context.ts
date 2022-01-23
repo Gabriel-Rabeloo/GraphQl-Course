@@ -7,10 +7,7 @@ const authorizeUser = async (req: Request): Promise<string> => {
 
   try {
     const token = authorization.split(' ')[1];
-    const response = jwt.verify(
-      token,
-      process.env.JWT_SECRET || '',
-    ) as jwt.JwtPayload;
+    const response = jwt.verify(token, process.env.JWT_SECRET || '') as jwt.JwtPayload;
 
     const { userId } = response;
     const get = async () => {

@@ -20,10 +20,7 @@ export const findPostOwner = async (postId: string, dataSource: any) => {
   })) as Post | undefined;
 
   if (!foundPost) {
-    throw new FetchError(
-      'Could not find the post you are looking for.',
-      'Not Found',
-    );
+    throw new FetchError('Could not find the post you are looking for.', 'Not Found');
   }
 
   if (foundPost.userId !== dataSource.context.loggedUserId) {
@@ -33,11 +30,7 @@ export const findPostOwner = async (postId: string, dataSource: any) => {
   return foundPost;
 };
 
-export const updatePostFn = async (
-  postId: string,
-  postData: InputPost,
-  dataSource: any,
-) => {
+export const updatePostFn = async (postId: string, postData: InputPost, dataSource: any) => {
   if (!postId) {
     throw new ValidationError('Missing postId');
   }

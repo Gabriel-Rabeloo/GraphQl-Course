@@ -2,11 +2,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
 import { InputUser, User } from '../../types/simpleTypes';
 import { makeUserDataLoader } from './dataLoaders';
-import {
-  createUserFn,
-  deleteUserFn,
-  updateUserFn,
-} from './utils/user-repository';
+import { createUserFn, deleteUserFn, updateUserFn } from './utils/user-repository';
 
 export class UsersApi extends RESTDataSource {
   dataLoader: any;

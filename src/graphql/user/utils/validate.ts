@@ -6,9 +6,7 @@ const validateUserName = (userName: string) => {
   const userNameRegExp = /^[a-z]([a-z0-9_.-]+)+$/gi;
 
   if (!userName.match(userNameRegExp)) {
-    throw new ValidationError(
-      `Username must start with a letter and cannot contain special characters`,
-    );
+    throw new ValidationError(`Username must start with a letter and cannot contain special characters`);
   }
 };
 

@@ -82,10 +82,7 @@ interface UserApi {
 }
 
 interface LoginApi {
-  login: (
-    userName: string,
-    password: string,
-  ) => Promise<{ userId: string; token: string }>;
+  login: (userName: string, password: string) => Promise<{ userId: string; token: string }>;
   logout: (userName: string) => Promise<boolean>;
 }
 
