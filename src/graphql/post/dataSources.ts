@@ -14,13 +14,13 @@ export class PostsApi extends RESTDataSource {
 
   async getPosts(urlParams: URLSearchParamsInit = {}): Promise<Post[]> {
     return this.get('', urlParams, {
-      cacheOptions: { ttl: 60 },
+      cacheOptions: { ttl: 0 },
     });
   }
 
   async getPost(id: string): Promise<Post> {
     return this.get(id, undefined, {
-      cacheOptions: { ttl: 60 },
+      cacheOptions: { ttl: 0 },
     });
   }
 
