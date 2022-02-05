@@ -27,6 +27,15 @@ export type Post = {
   userId: string;
 };
 
+export type Comment = {
+  id: string;
+  comment: string;
+  userId: string;
+  postId: string;
+  indexRef: string;
+  createdAt: string;
+};
+
 export type params = {
   input: string;
   id: string;
