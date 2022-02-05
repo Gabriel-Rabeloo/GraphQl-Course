@@ -1,7 +1,7 @@
 import { AuthenticationError, ValidationError } from 'apollo-server-errors';
 import { FetchError } from 'node-fetch';
 
-import { InputPost, Post } from '../../../interfaces/simpleTypes';
+import { InputPost, Post } from '../../../../interfaces/simpleTypes';
 import { userExist } from './validate';
 
 export const createPostFn = async (postData: InputPost, dataSource: any): Promise<Post> => {

@@ -1,6 +1,6 @@
 import { UserInputError, ValidationError } from 'apollo-server-errors';
 import bcrypt from 'bcrypt';
-import { DataSources } from '../../../interfaces/simpleTypes';
+import { DataSources } from '../../../../interfaces/simpleTypes';
 
 const validateUserName = (userName: string) => {
   const userNameRegExp = /^[a-z]([a-z0-9_.-]+)+$/gi;

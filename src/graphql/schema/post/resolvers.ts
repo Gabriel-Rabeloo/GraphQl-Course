@@ -1,6 +1,6 @@
-import { Context, DataSources, Error } from '../../interfaces/simpleTypes';
-import { params } from '../../interfaces/simpleTypes';
-import { Post } from '../../interfaces/simpleTypes';
+import { Context, DataSources, Error } from '../../../interfaces/simpleTypes';
+import { params } from '../../../interfaces/simpleTypes';
+import { Post } from '../../../interfaces/simpleTypes';
 import { checkIsLoggedIn } from '../login/utils/validate';
 
 // Query resolvers

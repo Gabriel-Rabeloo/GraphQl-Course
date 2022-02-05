@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 
-import { Post } from '../../interfaces/simpleTypes';
+import { Post } from '../../../interfaces/simpleTypes';
 
 // eslint-disable-next-line no-unused-vars
 type GetPost = (query: string) => Promise<Post[]>;

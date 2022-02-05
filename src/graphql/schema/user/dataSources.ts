@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
-import { InputUser, User } from '../../interfaces/simpleTypes';
+import { InputUser, User } from '../../../interfaces/simpleTypes';
 import { makeUserDataLoader } from './dataLoaders';
 import { createUserFn, deleteUserFn, updateUserFn } from './utils/user-repository';
 

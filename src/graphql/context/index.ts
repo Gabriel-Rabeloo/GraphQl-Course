@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { UsersApi } from './user/dataSources';
+import { UsersApi } from '../schema/user/dataSources';
 
 const verifyJwtToken = async (token: string): Promise<string> => {
   try {

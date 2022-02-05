@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { URLSearchParamsInit } from 'apollo-server-env';
 
-import { LoginApi } from '../graphql/login/dataSources';
-import { PostsApi } from '../graphql/post/dataSources';
-import { UsersApi } from '../graphql/user/dataSources';
+import { LoginApi } from '../graphql/schema/login/dataSources';
+import { PostsApi } from '../graphql/schema/post/dataSources';
+import { UsersApi } from '../graphql/schema/user/dataSources';
 
 /* eslint-disable @typescript-eslint/ban-types */
 export type User = {

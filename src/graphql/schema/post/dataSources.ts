@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { URLSearchParamsInit } from 'apollo-server-env';
-import { InputPost, Post } from '../../interfaces/simpleTypes';
+import { InputPost, Post } from '../../../interfaces/simpleTypes';
 import { makePostDataLoader } from './dataLoaders';
 import { createPostFn, deletePostFn, updatePostFn } from './utils/post-repository';
 

@@ -1,5 +1,5 @@
 import { ValidationError } from 'apollo-server-errors';
-import { InputUser, User } from '../../../interfaces/simpleTypes';
+import { InputUser, User } from '../../../../interfaces/simpleTypes';
 import { checkUserFields, userExists } from './validate';
 
 export const createUserFn = async (userData: InputUser, dataSource: any): Promise<User> => {
