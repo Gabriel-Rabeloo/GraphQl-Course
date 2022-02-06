@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { URLSearchParamsInit } from 'apollo-server-env';
+import { CommentSQLDataSource } from '../graphql/schema/comment/datasources';
 
 import { LoginApi } from '../graphql/schema/login/dataSources';
 import { PostsApi } from '../graphql/schema/post/dataSources';
@@ -36,6 +37,11 @@ export type Comment = {
   createdAt: string;
 };
 
+export type CreateCommentInput = {
+  comment: string;
+  postId: string;
+};
+
 export type params = {
   input: string;
   id: string;
@@ -58,6 +64,7 @@ export interface DataSources {
     postApi: PostsApi;
     userApi: UsersApi;
     loginApi: LoginApi;
+    commentDb: CommentSQLDataSource;
   };
 }
 
@@ -66,6 +73,7 @@ export interface Context {
     postApi: PostsApi;
     userApi: UsersApi;
     loginApi: LoginApi;
+    commentDb: CommentSQLDataSource;
   };
   loggedUserId: string;
 }
