@@ -37,6 +37,15 @@ export type Comment = {
   createdAt: string;
 };
 
+export type DbComment = {
+  id: string;
+  comment: string;
+  post_id: string;
+  user_id: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export type CreateCommentInput = {
   comment: string;
   postId: string;

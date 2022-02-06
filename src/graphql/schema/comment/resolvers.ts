@@ -14,8 +14,8 @@ const createComment = async (
   return dataSources.commentDb.create({ postId, comment, userId: loggedUserId });
 };
 
-const user = async ({ user_id }: { user_id: string }, _: unknown, { dataSources }: Context) => {
-  const user = await dataSources.userApi.batchLoadByUserId(user_id);
+const user = async ({ userId }: { userId: string }, _: unknown, { dataSources }: Context) => {
+  const user = await dataSources.userApi.batchLoadByUserId(userId);
   return user;
 };
 
