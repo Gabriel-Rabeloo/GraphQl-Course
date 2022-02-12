@@ -8,11 +8,11 @@ interface DataSourceConfig<TContext> {
   cache: KeyValueCache;
 }
 
-export abstract class SQLDataSource extends DataSource {
-  db: any;
+export abstract class SQLDataSource<T> extends DataSource {
+  db: T;
   context: Context | Record<string, unknown> = {};
   cache: KeyValueCache = new InMemoryLRUCache();
-  private _loader: any;
+  private _loader: DataLoader<any, any>;
 
   constructor(dbConnection: any) {
     super();
@@ -29,7 +29,7 @@ export abstract class SQLDataSource extends DataSource {
     return this._loader.load(id);
   }
 
-  async batchLoaderCallback(_ids: readonly string[]) {
+  async batchLoaderCallback(_ids: readonly string[]): Promise<any> {
     return _ids;
   }
 }

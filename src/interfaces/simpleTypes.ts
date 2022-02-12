@@ -32,8 +32,6 @@ export type Comment = {
   id: string;
   comment: string;
   userId: string;
-  postId: string;
-  indexRef: string;
   createdAt: string;
 };
 
