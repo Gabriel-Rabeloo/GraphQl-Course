@@ -178,7 +178,7 @@
       "indexRef": 23,
       "createdAt": "2021-10-17T21:10:24.002Z",
       "id": "rrh19yp",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJycmgxOXlwIiwiaWF0IjoxNjQ0NzcxNzU0LCJleHAiOjE2NDUzNzY1NTR9.a7RSxZ7uklo3baJQP7EJ_WiGGMfth0yGddAKEOMJNho"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJycmgxOXlwIiwiaWF0IjoxNjQ0Nzc2MTk0LCJleHAiOjE2NDUzODA5OTR9.K485r1Bl79lfzdVuPPy2YsoETbGKmzO5TKdoh0wnrss"
     },
     {
       "firstName": "gabriel",
@@ -189,6 +189,16 @@
       "createdAt": "2022-01-22T16:07:38.053Z",
       "id": "HsbDT6D",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJIc2JEVDZEIiwiaWF0IjoxNjQzMDUwNjg5LCJleHAiOjE2NDM2NTU0ODl9.yift2p2he-lf3QBkaVABFU4SW8C-yv1WonGQW4FJki4"
+    },
+    {
+      "firstName": "gabriel",
+      "lastName": "rabelo",
+      "userName": "gbr123",
+      "passwordHash": "$2b$12$/XiNwQJpyObiyyKyYhGm..H7dC0njBkUglFVzyPcLfjfmuYuWcG.W",
+      "indexRef": 25,
+      "createdAt": "2022-02-13T18:14:58.153Z",
+      "id": "qDlHhja",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJxRGxIaGphIiwiaWF0IjoxNjQ0Nzc3MzU5LCJleHAiOjE2NDUzODIxNTl9.hKEo6AUHFJ3A4vKFpVFRECVv1zeoKu7WPt1SF3BsnHw"
     }
   ],
   "posts": [

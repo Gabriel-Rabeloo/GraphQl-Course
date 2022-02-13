@@ -103,3 +103,8 @@ export type InputLogin = {
     password: string;
   };
 };
+
+export interface CreateComment extends CreateCommentInput {
+  userId: string;
+  postOwner: string | null;
+}

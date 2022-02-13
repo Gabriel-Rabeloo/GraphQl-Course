@@ -1,6 +1,6 @@
-import { PubSub } from 'apollo-server';
+import { PubSub, withFilter } from 'apollo-server';
 
-import { Context, CreateCommentInput } from '../../../interfaces/simpleTypes';
+import { Context, CreateComment, CreateCommentInput } from '../../../interfaces/simpleTypes';
 import { checkIsLoggedIn } from '../login/utils/validate';
 
 export const pubSub = new PubSub();
@@ -14,20 +14,29 @@ const createComment = async (
   checkIsLoggedIn(loggedUserId);
   const { postId, comment } = data;
 
-  await dataSources.postApi.getPost(postId); // throws if post does not exist
+  const post = await dataSources.postApi.getPost(postId); // throws if post does not exist
 
-  return dataSources.commentDb.create({ postId, comment, userId: loggedUserId });
+  return dataSources.commentDb.create({ postId, comment, userId: loggedUserId, postOwner: post?.userId || null });
 };
 
 const user = async ({ userId }: { userId: string }, _: unknown, { dataSources }: Context) => {
+  console.log('data sources', dataSources);
   const user = await dataSources.userApi.batchLoadByUserId(userId);
   return user;
 };
 
 const createdComment = {
-  subscribe: () => {
-    return pubSub.asyncIterator(CREATED_COMMENT_TRIGGER);
-  },
+  subscribe: withFilter(
+    () => {
+      return pubSub.asyncIterator(CREATED_COMMENT_TRIGGER);
+    },
+    (payload: CreateComment, _variable: unknown, context: Context) => {
+      const hasPostOwner = payload.postOwner && payload.postOwner !== null;
+      const postOwnerIsLoggedUser = payload.postOwner === context.loggedUserId;
+      const shouldNotifyUser = !!hasPostOwner && !!postOwnerIsLoggedUser;
+      return shouldNotifyUser;
+    },
+  ),
 };
 
 export const commentResolvers = {

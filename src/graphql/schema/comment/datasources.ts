@@ -1,12 +1,8 @@
 import { ValidationError } from 'apollo-server';
 import { Knex } from 'knex';
-import { Comment, CreateCommentInput, DbComment } from '../../../interfaces/simpleTypes';
+import { Comment, CreateComment, DbComment } from '../../../interfaces/simpleTypes';
 import { SQLDataSource } from '../../datasources/sql/sql-datasource';
 import { CREATED_COMMENT_TRIGGER, pubSub } from './resolvers';
-
-interface CreateComment extends CreateCommentInput {
-  userId: string;
-}
 
 const commentReducer = (comment: DbComment) => {
   return {
@@ -39,7 +35,7 @@ export class CommentSQLDataSource extends SQLDataSource<Knex> {
     return comments.map((comment: DbComment) => commentReducer(comment));
   }
 
-  async create({ userId, postId, comment }: CreateComment) {
+  async create({ userId, postId, comment, postOwner = null }: CreateComment) {
     const partialComment = {
       user_id: userId,
       post_id: postId,
@@ -58,6 +54,7 @@ export class CommentSQLDataSource extends SQLDataSource<Knex> {
 
     pubSub.publish(CREATED_COMMENT_TRIGGER, {
       createdComment: dataToReturn,
+      postOwner,
     });
 
     return dataToReturn;

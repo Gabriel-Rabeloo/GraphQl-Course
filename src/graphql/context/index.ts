@@ -3,19 +3,19 @@ import { Request, Response } from 'express';
 
 import { UsersApi } from '../schema/user/dataSources';
 
+const get = async () => {
+  return '';
+};
+const set = async () => {
+  console.log('');
+};
+const deleteFn = async () => {
+  return true;
+};
+
 const verifyJwtToken = async (token: string): Promise<string> => {
   try {
     const { userId } = jwt.verify(token, process.env.JWT_SECRET || '') as jwt.JwtPayload;
-
-    const get = async () => {
-      return '';
-    };
-    const set = async () => {
-      console.log('');
-    };
-    const deleteFn = async () => {
-      return true;
-    };
 
     const userApi = new UsersApi();
     userApi.initialize({
@@ -84,11 +84,35 @@ export const context = async ({ req, res, connection }: Context) => {
     }
   }
 
-  return {
+  const theContext: ITheContext = {
     loggedUserId,
     res,
   };
+
+  if (connection) {
+    const userApi = new UsersApi();
+    userApi.initialize({
+      context: {},
+      cache: {
+        get,
+        set,
+        delete: deleteFn,
+      },
+    });
+
+    theContext.dataSources = {
+      userApi,
+    };
+  }
+
+  return theContext;
 };
+
+interface ITheContext {
+  loggedUserId: string;
+  res: Response;
+  dataSources?: { userApi: UsersApi };
+}
 
 type Context = {
   req: Request;
