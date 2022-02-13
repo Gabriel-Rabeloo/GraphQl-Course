@@ -25,6 +25,13 @@ const server = new ApolloServer({
     };
   },
   uploads: false,
+  subscriptions: {
+    onConnect: (connectionParams: any, websocket: any) => {
+      return {
+        req: websocket.upgradeReq,
+      };
+    },
+  },
 });
 
 server.listen(4003).then(({ url }) => {

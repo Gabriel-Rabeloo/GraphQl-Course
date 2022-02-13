@@ -2,6 +2,7 @@ import { ValidationError } from 'apollo-server';
 import { Knex } from 'knex';
 import { Comment, CreateCommentInput, DbComment } from '../../../interfaces/simpleTypes';
 import { SQLDataSource } from '../../datasources/sql/sql-datasource';
+import { CREATED_COMMENT_TRIGGER, pubSub } from './resolvers';
 
 interface CreateComment extends CreateCommentInput {
   userId: string;
@@ -54,6 +55,10 @@ export class CommentSQLDataSource extends SQLDataSource<Knex> {
 
     const dataCreated = await this.db(this.tableName).where('id', '=', created[0]);
     const dataToReturn = commentReducer(dataCreated[0]);
+
+    pubSub.publish(CREATED_COMMENT_TRIGGER, {
+      createdComment: dataToReturn,
+    });
 
     return dataToReturn;
   }
