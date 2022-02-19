@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -e 'ts,js' -r dotenv/config -r sucrase/register src/index.ts",
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run server & node -r dotenv/config dist/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "knex": "^1.0.2",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.5",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.2.1"
   },
   "devDependencies": {
