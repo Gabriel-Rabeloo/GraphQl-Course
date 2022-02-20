@@ -31,6 +31,8 @@ const server = new ApolloServer({
         req: websocket.upgradeReq,
       };
     },
+    path: '/',
+    keepAlive: 5000,
   },
 });
 
