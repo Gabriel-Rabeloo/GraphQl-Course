@@ -25,6 +25,10 @@ const server = new ApolloServer({
     };
   },
   uploads: false,
+  cors: {
+    origin: 'http://localhost:3000',
+    credentials: true,
+  },
   subscriptions: {
     onConnect: (connectionParams: any, websocket: any) => {
       return {
