@@ -10,7 +10,9 @@ To run this project:
 
 
     `npm install` -> Installing all dependencies
-
+    
+    `docker-compose up -d` -> Running mysql container
+    
     `npm run server` -> Running the "API" with Json-Server
 
     `npm run dev` -> Running the GraphQl with Apollo-Server
