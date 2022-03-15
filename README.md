@@ -1,5 +1,5 @@
 # GraphQl-Course
-### This repository contains everything developed in this [course](https://www.udemy.com/course/curso-de-graphql-e-apollo-server-client//).
+### This repository contains all backend developed in this [course](https://www.udemy.com/course/curso-de-graphql-e-apollo-server-client//).
 
 To run this project:
 
